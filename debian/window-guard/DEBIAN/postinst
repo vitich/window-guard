@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+echo "✅ Window Guard successfully installed."
+echo "⚙️ Run watchdog via /etc/xdg/autostart/window-guard.desktop"
