@@ -1,5 +1,5 @@
 Package: window-guard
-Version: 1.0-1
+Version: 0.0.1
 Section: x11
 Priority: optional
 Architecture: amd64
