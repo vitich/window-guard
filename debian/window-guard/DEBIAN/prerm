@@ -1,5 +1,0 @@
-#!/bin/bash
-#for i in $(ps aux | grep window-guard | grep -v grep | awk '{print $2}');do kill -9 $i > /dev/null 2>&1;done
-pkill window-guard_watchdog.sh
-pkill window-guard
-exit 0
