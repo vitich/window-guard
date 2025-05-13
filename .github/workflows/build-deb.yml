@@ -47,6 +47,7 @@ jobs:
 
         chmod 755 debian/window-guard/usr/bin/*
         chmod 755 debian/window-guard/DEBIAN/postinst
+        chmod 755 debian/window-guard/DEBIAN/postrm
         dpkg-deb --build debian/window-guard window-guard_${VERSION}_amd64.deb
 
     - name: Upload DEB to release
