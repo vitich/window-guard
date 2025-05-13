@@ -1,4 +1,4 @@
 #!/bin/bash
-set +e
-echo "✅ Window Guard successfully installed."
+#set +e
+#echo "✅ Window Guard successfully installed."
 exit 0
