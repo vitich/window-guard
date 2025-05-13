@@ -1,5 +1,12 @@
 #!/bin/bash
 set -e
+
+USER_NAME=user
+USER_HOME=$(eval echo ~$USER_NAME)
+DISPLAY_ENV=":0"
+XAUTH="$USER_HOME/.Xauthority"
+
+# Приклад команди — notify-send
+sudo -u "$USER_NAME" DISPLAY=$DISPLAY_ENV XAUTHORITY=$XAUTH /usr/bin/window-guard_watchdog.sh &
 echo "✅ Window Guard successfully installed."
-echo "⚙️ Run watchdog via /etc/xdg/autostart/window-guard.desktop"
-/usr/bin/window-guard_watchdog.sh &
+exit 0
