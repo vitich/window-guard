@@ -46,8 +46,7 @@ jobs:
         echo "Description: Window Guard with watchdog" >> debian/window-guard/DEBIAN/control
 
         chmod 755 debian/window-guard/usr/bin/*
-        chmod 755 debian/window-guard/DEBIAN/postinst
-        chmod 755 debian/window-guard/DEBIAN/postrm
+        chmod 755 debian/window-guard/DEBIAN/*
         dpkg-deb --build debian/window-guard window-guard_${VERSION}_amd64.deb
 
     - name: Upload DEB to release
