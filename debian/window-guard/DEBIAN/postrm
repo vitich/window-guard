@@ -1,4 +1,0 @@
-#!/bin/bash
-
-for i in $(ps aux | grep window-guard | grep -v grep | awk '{print $2}');do kill -9 $i > /dev/null 2>&1;done
-exit 0
