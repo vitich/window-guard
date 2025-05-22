@@ -9,7 +9,6 @@
 - Automatically moves **all other windows** back to the **primary monitor**
 - Cancels maximized/tiled states to allow repositioning
 - Locks the mouse cursor within the primary monitor bounds
-- Logs all window movements for visibility and debugging
 - Compatible with **most X11 window managers** (e.g. MATE, XFCE, Openbox, Fluxbox, i3, etc.)
 
 > ⚠️ **GNOME X11** may not fully respect movement requests. Window repositioning in GNOME can be inconsistent due to how `mutter` handles client requests. Use with caution.
