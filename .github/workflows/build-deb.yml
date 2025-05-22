@@ -1,0 +1,55 @@
+permissions:
+  contents: write
+name: Build DEB on Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-deb:
+    runs-on: ubuntu-latest
+
+    env:
+      VERSION: ${{ github.ref_name }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install deps
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential libx11-dev libxrandr-dev debhelper
+
+    - name: Build binary
+      run: make
+
+    - name: Prepare packaging
+      run: |
+        VERSION="${VERSION#v}"
+        mkdir -p debian/window-guard/usr/bin
+        mkdir -p debian/window-guard/etc
+        mkdir -p debian/window-guard/etc/xdg/autostart
+        cp window-guard debian/window-guard/usr/bin/
+        cp window-guard_watchdog.sh debian/window-guard/usr/bin/
+        cp window-guard.conf debian/window-guard/etc/
+        cp autostart/window-guard.desktop debian/window-guard/etc/xdg/autostart/
+
+        mkdir -p debian/window-guard/DEBIAN
+        echo "Package: window-guard" > debian/window-guard/DEBIAN/control
+        echo "Version: $VERSION" >> debian/window-guard/DEBIAN/control
+        echo "Section: x11" >> debian/window-guard/DEBIAN/control
+        echo "Priority: optional" >> debian/window-guard/DEBIAN/control
+        echo "Architecture: amd64" >> debian/window-guard/DEBIAN/control
+        echo "Maintainer: you@example.com" >> debian/window-guard/DEBIAN/control
+        echo "Description: Window Guard with watchdog" >> debian/window-guard/DEBIAN/control
+
+        chmod 755 debian/window-guard/usr/bin/*
+        chmod 755 debian/window-guard/DEBIAN/*
+        dpkg-deb --build debian/window-guard window-guard_${VERSION}_amd64.deb
+
+    - name: Upload DEB to release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: window-guard_*.deb

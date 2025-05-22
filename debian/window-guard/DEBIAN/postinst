@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "✅ Window Guard successfully installed."
+exit 0

@@ -1,0 +1,7 @@
+Package: window-guard
+Version: 0.0.1
+Section: x11
+Priority: optional
+Architecture: amd64
+Maintainer: vitich@gmail.com
+Description: window-guard moves a window with a specific name to the additional monitor on the right and docks it there.
